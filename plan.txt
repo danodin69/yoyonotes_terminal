@@ -1,0 +1,13 @@
+Title of application
+
+- New notes
+- view notes
+- about 
+- exit
+-----
+save delete
+
+name of the file
+
+the application will return main menu 
+------- 
