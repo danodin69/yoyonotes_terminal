@@ -1,11 +1,11 @@
-
-#YoYo Notes
-#Author : Dan and Yinka
-#Purpose : Exercise
-#Description : Simple terminal note taking application
+# YoYo Notes
+# Author : Dan and Yinka
+# Purpose : Exercise
+# Description : Simple terminal note taking application
 
 
 # --------------- Terminal Interface ---------------------------
+import sys
 
 
 main_menu_interface = """
@@ -33,15 +33,15 @@ save_or_delete_interface = """
 sub_menu_interface = """
 (R) return
 """
+
+
 # --------------- Terminal Interface ---------------------------
 
 
-#-------------------- Functions ----------------------------------
-
+# -------------------- Functions ----------------------------------
 
 
 def save_or_delete_note_menu(note):
-
     user_option = input("> ")
     user_option.lower()
 
@@ -50,13 +50,12 @@ def save_or_delete_note_menu(note):
             print("Input Note Name")
             name_of_note = input("> ")
             print(save_note(note=note, file_name=name_of_note))
-        case "d": 
+        case "d":
             print(main_menu_interface)
             return take_menu_input()
         case other:
             print("Unrecognised Input , Please try again")
             save_or_delete_note_menu(note)
-
 
 
 def save_note(note, file_name):
@@ -76,7 +75,6 @@ def take_new_notes():
     print(save_or_delete_interface)
     save_or_delete_note_menu(note=note)
 
-    
 
 def take_menu_input():
     user_input = input("> ")
@@ -88,20 +86,47 @@ def take_menu_input():
             take_new_notes()
         case "W":
             print("View Notes")
-            print(sub_menu_interface)
-        case "E":
+            view_notes()
+        case "E" :
             print("About Application")
+            about_application()
         case "R":
             print("Now Exiting YoYo Notes..\n\n\n\n")
+            exit_application()
         case other:
             print("Unrecognised Input")
             return take_menu_input()
-        
-        
+
+
+def view_notes():
+    file_name = str(input("Enter a file name: ")).lower()
+    # with open(file_name, 'r') as note:
+    #     print(note.readlines())
+
+
+    note = open(file_name, "r")
+    print(note.readlines())
+    note.close()
+    print(main_menu_interface)
+    take_menu_input()
+
+
+def about_application():
+    app_history = str(print(
+        "\nA user friendly application built to enable seamless documentation by users.\n"
+        "You can now take notes of important events in your life, or journal your feelings without having to worry about a loss of information.\n"
+        "Easy. Reliable. Private\n"
+    ))
+    return app_history
+
+
+def exit_application():
+    print("Application exited")
+    sys.exit()
+
 
 
 print(main_menu_interface)
-
 take_menu_input()
 
-#-------------------- Functions ----------------------------------
+# -------------------- Functions ----------------------------------
